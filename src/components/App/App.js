@@ -15,7 +15,7 @@ class App extends Component {
   getGallery = () => {
     console.log('in getGallery');
     Axios.get('/gallery').then((response)=>{
-      console.log('This is response from server', response);
+      console.log('This is response from server', response.data);
       this.setState({
         galleryList: response.data
       })
@@ -31,7 +31,7 @@ class App extends Component {
           <h1 className="App-title">Gallery of a life</h1>
         </header>
         <br/>
-        <GalleryList galleryList={this.state.galleryList}/>
+        <GalleryList galleryList={this.state.galleryList} getGallery={this.getGallery}/>
       </div>
     );
   }
