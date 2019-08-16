@@ -21,3 +21,26 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+img{
+  max-width: 250px;
+  min-width: 150px;
+  max-height: 250px;
+  min-height: 200px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+}
+
+.photoList {
+  display: inline-flex;
+}
+
+.galleryCaption {
+  color: white;
+  background-color: #222;
+  margin-right: 20px;
+}
+
+html {
+  background-color: rgba(50,50,50,0.8)
+}
