@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
 
 class GalleryForm extends Component {
   state = { 
@@ -38,9 +41,9 @@ class GalleryForm extends Component {
   render() { 
     return ( 
       <div>
-        <input value={this.state.path} type="text" placeholder="URL" onChange={(event) => this.handleChange(event, 'path')}/>
-        <input value={this.state.description} type="text" placeholder="Caption" onChange={(event) => this.handleChange(event, 'description')}/>
-        <button onClick={this.addPhoto}>Add To Gallery</button>
+        <Input value={this.state.path} type="text" placeholder="URL" onChange={(event) => this.handleChange(event, 'path')}/>
+        <Input value={this.state.description} type="text" placeholder="Caption" onChange={(event) => this.handleChange(event, 'description')}/>
+        <Button variant="outlined" onClick={this.addPhoto}>Add To Gallery</Button>
       </div>
      );
   }

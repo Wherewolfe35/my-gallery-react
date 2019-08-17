@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GalleryItem from "../GalleryItem/GalleryItem";
+import Grid from '@material-ui/core/Grid';
 
 class GalleryList extends Component {
   state = {  }
@@ -8,7 +9,9 @@ class GalleryList extends Component {
       <div className="photoList">
         {this.props.galleryList.map(picture =>
           <div key={picture.id}>
+            <Grid item xs={3}>
             <GalleryItem picture={picture} getGallery={this.props.getGallery}/>
+            </Grid>
         </div>
           )}
       </div>
