@@ -33,4 +33,19 @@ router.get('/', (req, res) => {
         })
 }); // END GET Route
 
+// POST Route
+router.post('/', (req, res) => {
+    let newPhoto = req.body;
+    console.log(newPhoto);
+    const queryText = `INSERT INTO "gallery" (path, description, likes) VALUES ($1, $2, 0);`;
+    pool.query(queryText, [newPhoto.path, newPhoto.description])
+    .then((result) => {
+        console.log(`Photo Added`, result);
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+}) //END POST Route
+
 module.exports = router;
