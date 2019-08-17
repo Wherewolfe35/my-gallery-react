@@ -23,6 +23,16 @@ class GalleryItem extends Component {
       })
     }
 
+    removePhoto = (Id) => {
+      console.log('Removing Photo');
+      Axios.delete(`./gallery/${Id}`).then((response) => {
+        console.log(response);
+        this.props.getGallery();
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+
   render() { 
     return (  
       <div>
@@ -31,7 +41,8 @@ class GalleryItem extends Component {
             <p>{this.props.picture.description}</p>}
         </div>
         <div className="galleryCaption">
-          <button onClick={()=> this.increaseLikes(this.props.picture.id)}>Like</button><br/>
+          <button onClick={()=> this.increaseLikes(this.props.picture.id)}>Like</button><span> </span>
+          <button onClick={()=> this.removePhoto(this.props.picture.id)}>Delete</button><br/>
           <p>{this.props.picture.likes} Likes</p>
         </div>
       </div>
