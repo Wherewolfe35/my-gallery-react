@@ -7,28 +7,32 @@ import Grid from '@material-ui/core/Grid';
 
 class App extends Component {
   state = {
-    galleryList:[]
+    galleryList: []
   }
 
-  //Get happens upon page load
-  componentDidMount(){
+  //Get happens upon initial page load
+  componentDidMount() {
     this.getGallery();
   }
 
   //Get request
   getGallery = () => {
     console.log('in getGallery');
-    Axios.get('/gallery').then((response)=>{
+    Axios.get('/gallery')
+    .then((response) => {
       console.log('This is response from server', response.data);
       this.setState({
         galleryList: response.data
       })
     })
+    .catch((error) => {
+      console.log('Could not GET', error);
+    })
   }
 
   render() {
     console.log(this.state);
-    
+
     return (
       <div className="App">
         <header className="App-header">
@@ -36,13 +40,12 @@ class App extends Component {
         </header>
         <Grid container spacing={4}>
           <Grid item xs={12}>
-        <GalleryForm getGallery={this.getGallery}/>
+            <GalleryForm getGallery={this.getGallery} />
           </Grid>
-        <br/>
-        <GalleryList galleryList={this.state.galleryList} getGallery={this.getGallery}/>
+          <br />
+          <GalleryList galleryList={this.state.galleryList} getGallery={this.getGallery} />
         </Grid>
       </div>
-      
     );
   }
 }

@@ -5,22 +5,22 @@ import Button from '@material-ui/core/Button';
 
 
 class GalleryForm extends Component {
-  state = { 
+  state = {
     path: '',
     description: '',
-   }
+  }
 
-   //POST request
-  addPhoto = () =>{
+  //POST request to send current state to database
+  addPhoto = () => {
     console.log('In addPhoto');
     Axios.post('/gallery', this.state)
-    .then((response)=>{
-      console.log(response);
-      this.props.getGallery();
-      this.emptyInputs();
-    }).catch((error)=>{
-      console.log(error);
-    })
+      .then((response) => {
+        console.log(response);
+        this.props.getGallery();
+        this.emptyInputs();
+      }).catch((error) => {
+        console.log(error);
+      })
   }
 
   //Keep track of inputs
@@ -31,22 +31,23 @@ class GalleryForm extends Component {
     })
   }
 
-  emptyInputs = ()=>{
+  //erase input fields
+  emptyInputs = () => {
     this.setState({
       path: '',
       description: ''
     })
   }
 
-  render() { 
-    return ( 
+  render() {
+    return (
       <div>
-        <Input value={this.state.path} type="text" placeholder="URL" onChange={(event) => this.handleChange(event, 'path')}/>
-        <Input value={this.state.description} type="text" placeholder="Caption" onChange={(event) => this.handleChange(event, 'description')}/>
+        <Input value={this.state.path} type="text" placeholder="URL" onChange={(event) => this.handleChange(event, 'path')} />
+        <Input value={this.state.description} type="text" placeholder="Caption" onChange={(event) => this.handleChange(event, 'description')} />
         <Button variant="outlined" onClick={this.addPhoto}>Add To Gallery</Button>
       </div>
-     );
+    );
   }
 }
- 
+
 export default GalleryForm;
